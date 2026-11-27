@@ -1,0 +1,155 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: #09090e;
+    color: #f5f5fa;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #09090e;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono,
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Fixed GPU ambient backdrop (replaces laggy background-attachment: fixed) */
+.ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate3d(0, 0, 0);
+  background-image:
+    radial-gradient(60% 44% at 50% -4%, rgba(139, 92, 246, 0.16) 0%, rgba(109, 40, 217, 0.05) 48%, transparent 100%),
+    radial-gradient(36% 32% at 86% 24%, rgba(99, 102, 241, 0.08) 0%, transparent 100%),
+    radial-gradient(34% 32% at 14% 32%, rgba(167, 139, 250, 0.06) 0%, transparent 100%);
+}
+
+/* Static sticky shells can use crisp GPU backdrop blur */
+.liquid-glass-bar {
+  background: rgba(11, 11, 18, 0.78);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+/* Animating cards avoid heavy backdrop-filter repainting for locked 60-120fps iOS motion */
+.liquid-glass {
+  background: linear-gradient(
+    180deg,
+    rgba(24, 24, 36, 0.92) 0%,
+    rgba(16, 16, 25, 0.90) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03),
+    0 22px 50px -18px rgba(0, 0, 0, 0.72);
+}
+
+.liquid-glass-subtle {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.025) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 10px 28px -16px rgba(0, 0, 0, 0.55);
+}
+
+.liquid-glass-pill {
+  background: linear-gradient(
+    180deg,
+    rgba(167, 139, 250, 0.30) 0%,
+    rgba(109, 40, 217, 0.24) 100%
+  );
+  border: 1px solid rgba(196, 181, 253, 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 8px 22px -6px rgba(139, 92, 246, 0.42);
+}
+
+/* GPU-only smooth shimmer & breathing ring */
+@keyframes liquid-shimmer {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(220%, 0, 0);
+  }
+}
+
+@keyframes ios-pulse-ring {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.16);
+    opacity: 0.12;
+  }
+}
+
+.animate-liquid-shimmer {
+  animation: liquid-shimmer 1.65s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  will-change: transform;
+}
+
+.animate-ios-ring {
+  animation: ios-pulse-ring 2.1s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  will-change: transform, opacity;
+}
+
+/* Crisp custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.22);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(167, 139, 250, 0.38);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-liquid-shimmer,
+  .animate-ios-ring {
+    animation: none;
+  }
+}

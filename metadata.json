@@ -1,0 +1,6 @@
+{
+  "name": "Tendouloader",
+  "description": "Fast, ad-free Liquid Glass media downloader for YouTube, TikTok, Instagram, Twitter X, and Facebook.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
