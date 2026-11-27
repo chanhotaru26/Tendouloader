@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 import net from 'node:net';
-import { PlatformId } from '../types/media';
+import type { PlatformId } from '../types/media.ts';
 
 // Ephemeral in-memory fallback when SESSION_SECRET is unset (never hardcoded)
 const EPHEMERAL_HMAC_SECRET = crypto.randomBytes(32);

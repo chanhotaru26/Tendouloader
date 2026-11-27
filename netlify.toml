@@ -1,0 +1,3 @@
+[dev]
+  command = "npm exec -- vite --port 5173 --strictPort"
+  targetPort = 5173

@@ -1,5 +1,5 @@
-import { MediaFormatOption, MediaItem } from '../../types/media';
-import { isPrivateOrReservedHost, sanitizeFilename } from '../security';
+import type { MediaFormatOption, MediaItem } from '../../types/media.ts';
+import { isPrivateOrReservedHost, sanitizeFilename } from '../security.ts';
 import {
   DESKTOP_UA,
   MOBILE_UA,
@@ -7,7 +7,7 @@ import {
   fetchWithTimeout,
   signDownloadProxyUrl,
   signImageProxyUrl,
-} from './common';
+} from './common.ts';
 
 function extractInstagramShortcode(urlObj: URL): string | null {
   const match = urlObj.pathname.match(/\/(?:p|reel|reels|tv)\/([A-Za-z0-9_-]+)/i);
