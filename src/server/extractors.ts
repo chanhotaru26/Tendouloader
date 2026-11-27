@@ -1,10 +1,10 @@
-import { MediaItem, PlatformId } from '../types/media';
-import { validateSourceUrl } from './security';
-import { extractFacebook } from './platforms/facebook';
-import { extractInstagram } from './platforms/instagram';
-import { extractTikTok } from './platforms/tiktok';
-import { extractTwitter } from './platforms/twitter';
-import { extractYouTube } from './platforms/youtube';
+import type { MediaItem, PlatformId } from '../types/media.ts';
+import { validateSourceUrl } from './security.ts';
+import { extractFacebook } from './platforms/facebook.ts';
+import { extractInstagram } from './platforms/instagram.ts';
+import { extractTikTok } from './platforms/tiktok.ts';
+import { extractTwitter } from './platforms/twitter.ts';
+import { extractYouTube } from './platforms/youtube.ts';
 
 interface CacheEntry {
   item: MediaItem;

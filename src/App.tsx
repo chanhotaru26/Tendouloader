@@ -8,6 +8,7 @@ import { MediaResultCard } from './components/MediaResultCard';
 import { Navbar } from './components/Navbar';
 import { PlatformSwitcher } from './components/PlatformSwitcher';
 import { SupportedFormatsModal } from './components/SupportedFormatsModal';
+import { readAnalysisResponse } from './data/analyzeResponse';
 import { PLATFORM_MAP, detectPlatformFromInput, extractCleanUrl } from './data/platforms';
 import {
   DownloadTask,
@@ -117,12 +118,7 @@ export default function App() {
           }),
         });
 
-        const payload = await response.json();
-        if (!response.ok) {
-          throw new Error(payload?.error || 'Could not analyze this media link.');
-        }
-
-        const item = payload as MediaItem;
+        const item = await readAnalysisResponse(response);
         setActivePlatform(item.platform);
         setResult(item);
       } catch (err) {

@@ -1,5 +1,5 @@
-import { MediaFormatOption, MediaItem } from '../../types/media';
-import { isPrivateOrReservedHost, sanitizeFilename } from '../security';
+import type { MediaFormatOption, MediaItem } from '../../types/media.ts';
+import { isPrivateOrReservedHost, sanitizeFilename } from '../security.ts';
 import {
   DESKTOP_UA,
   MOBILE_UA,
@@ -9,7 +9,7 @@ import {
   formatDuration,
   signDownloadProxyUrl,
   signImageProxyUrl,
-} from './common';
+} from './common.ts';
 
 function normalizeFacebookUrl(urlObj: URL): string {
   const clean = new URL(urlObj.toString());

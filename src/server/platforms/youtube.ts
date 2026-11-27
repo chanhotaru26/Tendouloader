@@ -1,5 +1,5 @@
-import { MediaFormatOption, MediaItem } from '../../types/media';
-import { sanitizeFilename } from '../security';
+import type { MediaFormatOption, MediaItem } from '../../types/media.ts';
+import { sanitizeFilename } from '../security.ts';
 import {
   DESKTOP_UA,
   decodeHtmlEntities,
@@ -9,7 +9,7 @@ import {
   formatDuration,
   signDownloadProxyUrl,
   signImageProxyUrl,
-} from './common';
+} from './common.ts';
 
 interface InnertubeFormat {
   itag?: number;
